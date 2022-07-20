@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ProdutoService {
     List<Produto> buscaProduto(String query);
+
+    Produto criarProduto(Produto produto);
 }

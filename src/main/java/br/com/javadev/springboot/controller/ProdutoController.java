@@ -3,9 +3,7 @@ package br.com.javadev.springboot.controller;
 import br.com.javadev.springboot.entity.Produto;
 import br.com.javadev.springboot.service.ProdutoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +16,11 @@ public class ProdutoController {
         this.produtoService = produtoService;
     }
     @GetMapping("/busca")
-    public ResponseEntity<List<Produto>> buscaProduto(String query){
+    public ResponseEntity<List<Produto>> buscaProduto(@RequestParam("query") String query){
         return ResponseEntity.ok(produtoService.buscaProduto(query));
+    }
+    @PostMapping
+    public Produto criarProduto(@RequestBody Produto produto){
+        return produtoService.criarProduto(produto);
     }
 }
